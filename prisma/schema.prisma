@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model InviteLinks {
+  id        Int     @id @default(autoincrement())
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId Int
+  slug      String  @unique
+  used      Boolean @default(false)
+}
+
+model Whitelist {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  Project   Project? @relation(fields: [projectId], references: [id])
+  projectId Int?
+}
+
+model Owner {
+  id      Int       @id @default(autoincrement())
+  email   String    @unique
+  Project Project[]
+}
+
+model Project {
+  id          Int           @id @default(autoincrement())
+  projectId   String        @unique @default(uuid())
+  owner       Owner         @relation(fields: [ownerId], references: [id])
+  ownerId     Int
+  projectName String
+  InviteLinks InviteLinks[]
+  whitelist   Whitelist[]
+  apiToken    String        @unique
+}
