@@ -26,18 +26,14 @@
     "next": "latest",
     "postcss": "^8.2.4",
     "random-word-slugs": "^0.0.5",
-    "react": "^17.0.1",
     "react-cookie": "^4.1.1",
-    "react-dom": "^16.12.0",
     "react-hot-toast": "^2.1.1",
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
     "@tailwindcss/jit": "^0.1.18",
     "@types/jsonwebtoken": "^8.5.5",
-    "@types/node": "^12.12.21",
-    "@types/react": "^16.9.16",
-    "@types/react-dom": "^16.9.4"
+    "@types/node": "^12.12.21"
   },
   "license": "MIT"
 }
