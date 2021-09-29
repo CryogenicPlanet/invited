@@ -4,7 +4,8 @@
   "description": "An example typescript monorepo",
   "scripts": {
     "verify": "pnpm recursive run verify",
-    "build": "pnpm recursive run build"
+    "build": "pnpm recursive run build",
+    "postinstall": "prisma generate"
   },
   "author": "@CryogenicPlanet",
   "license": "ISC",
