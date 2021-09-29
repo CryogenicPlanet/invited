@@ -1,8 +1,3 @@
 node_modules
-lerna-debug.log
-npm-debug.log
-packages/*/lib
-packages/*/dist
-.idea
-packages/*/coverage
-.vscode/
+# Keep environment variables out of version control
+.env

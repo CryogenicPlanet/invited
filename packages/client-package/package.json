@@ -1,5 +1,5 @@
 {
-  "name": "@monorepo/package-b",
+  "name": "invited",
   "version": "0.0.0",
   "main": "./dist/index.umd.js",
   "typings": "./dist/index.d.ts",
@@ -26,7 +26,6 @@
     "verify:fix": "yarn prettier:fix && yarn lint:fix"
   },
   "dependencies": {
-    "@monorepo/package-a": "^1.0.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },
