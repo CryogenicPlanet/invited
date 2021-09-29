@@ -18,9 +18,9 @@
     "bundle:tsc": "node build/bundleDts.js",
     "build": "npm-run-all build:vite build:tsc  bundle:tsc",
     "serve": "vite preview",
-    "prettier": "prettier --check src/",
-    "prettier:fix": "prettier --write src/",
-    "lint": "eslint . --ext .ts,.tsx",
+    "prettier": "prettier --check src/*",
+    "prettier:fix": "prettier --write src/*",
+    "lint": "eslint src/*",
     "lint:fix": "yarn lint --fix",
     "verify": "run-p prettier lint",
     "verify:fix": "yarn prettier:fix && yarn lint:fix"
