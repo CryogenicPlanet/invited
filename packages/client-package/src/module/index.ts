@@ -42,12 +42,12 @@ class Invited {
         { email },
         { headers: { apiToken } }
       )
+      return true
     } catch (err) {
       if (modal) {
         this._openModal()
-      } else {
-        throw new Error(err)
       }
+      throw new Error(err)
     }
   }
 
