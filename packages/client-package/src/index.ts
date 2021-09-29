@@ -1,3 +1,3 @@
-import App from './App'
+import { Invited } from './module/index'
 
-export { App }
+export { Invited }

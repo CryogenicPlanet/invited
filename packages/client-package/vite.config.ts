@@ -15,16 +15,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: '@monorepo/package-b',
+      name: 'invited',
       fileName: 'index'
-    },
-    rollupOptions: {
-      external: ['react'],
-      output: {
-        globals: {
-          react: 'react'
-        }
-      }
     }
   }
 })

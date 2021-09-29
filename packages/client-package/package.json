@@ -26,6 +26,8 @@
     "verify:fix": "yarn prettier:fix && yarn lint:fix"
   },
   "dependencies": {
+    "@headlessui/react": "^1.4.1",
+    "@heroicons/react": "^1.0.4",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },
