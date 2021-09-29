@@ -40,4 +40,5 @@ model Project {
   InviteLinks InviteLinks[]
   whitelist   Whitelist[]
   apiToken    String        @unique
+  redirectUrl String?
 }
