@@ -5,8 +5,51 @@ import { isValidToken } from '@utils/token'
 
 const prisma = new PrismaClient()
 
+/**
+ * @apiDefine private Private
+ *
+ *
+ * Access to this api is private. It needs a token
+ *
+ * @apiHeader {String} apiToken The apiToken.
+ * @apiParam {String} apiToken The apiToken.
+ * @apiQuery {String} apiToken The apiToken.
+ *
+ * @apiError Unauthorized Not allowed to use this api
+ */
+
+/**
+ * @apiDefine verify Verify
+ *    Verifying User in Whitelist
+ */
+
+/**
+ * @api {get} api/verify Verify (Get)
+ * @apiDescription Check if someone has been invited to a project
+ *
+ * If you are using get, don't send a param (duh)
+ *
+ * @apiGroup verify
+ * @apiPermission private
+ * @apiUse private
+ *
+ * @apiQuery {String} email The email that should be verified
+ */
+
+/**
+ * @api {post} api/verify Verify (Post)
+ * @apiDescription Check if someone has been invited to a project
+ *
+ * if you are using post, don't send a query (duh)
+ *
+ * @apiGroup verify
+ * @apiPermission private
+ * @apiUse private
+ *
+ * @apiParam {String} email The email that should be verified
+ */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const email = req.body.email as string | undefined
+  const email = (req.body.email || req.query.email) as string | undefined
 
   const apiToken =
     req.headers.apiToken || req.body.apiToken || req.query.apiToken

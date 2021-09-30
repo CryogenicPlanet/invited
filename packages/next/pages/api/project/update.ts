@@ -5,6 +5,14 @@ import { isValidToken } from '@utils/token'
 
 const prisma = new PrismaClient()
 
+/**
+ * @api {post} api/project/update Update Project
+ * @apiDescription Update params of the project
+ * @apiGroup project
+ * @apiPermission private
+ *
+ * @apiParam {String} redirectUrl Update a redirect url (optional)
+ */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const apiToken = req.headers.apiToken || req.body.apiToken
 

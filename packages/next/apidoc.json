@@ -1,0 +1,12 @@
+{
+  "name": "Invited Rest API Docs",
+  "version": "0.1.0",
+  "description": "This is the apiDoc for the entire Invited Rest API \n You can also directly use the client package if you want",
+  "url": "https://invited.vercel.app/",
+  "template": {
+    "withCompare": true,
+    "withGenerator": false,
+    "aloneDisplay": false
+  },
+  "sampleUrl": "https://invited.vercel.app/"
+}

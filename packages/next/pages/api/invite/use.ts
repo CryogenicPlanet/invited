@@ -4,6 +4,17 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
+/**
+ * @api {post} api/project/use Use an Invite
+ * @apiDescription Consume an invite
+ * @apiGroup invite
+ * @apiPermission public
+ *
+ * @apiParam {String} slug The invite slug
+ * @apiParam {String} email The email of the person consuming the invite
+ *
+ * @apiSuccess {String|null} url Returns the redirect url
+ */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const slug = req.body.slug as string
   const email = req.body.email as string

@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next",
+    "postbuild": "yarn document",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
@@ -13,13 +14,15 @@
     "prettier": "prettier --check **/*.ts*",
     "prettier:fix": "prettier --write **/*.ts*",
     "verify": "yarn prettier && yarn lint",
-    "verify:fix": "yarn prettier:fix && yarn lint:fix"
+    "verify:fix": "yarn prettier:fix && yarn lint:fix",
+    "document": "apidoc -i pages/ -o public/docs/api --private true"
   },
   "dependencies": {
     "@fontsource/inter": "^4.5.0",
     "@headlessui/react": "^1.0.0",
     "@heroicons/react": "^1.0.1",
     "@twind/forms": "^0.1.4",
+    "apidoc": "^0.29.0",
     "autoprefixer": "^10.2.4",
     "axios": "^0.21.4",
     "jsonwebtoken": "^8.5.1",

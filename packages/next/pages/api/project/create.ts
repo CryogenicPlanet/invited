@@ -5,6 +5,20 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
+/**
+ * @apiDefine project Project
+ *    Handling requests  to project
+ */
+
+/**
+ * @api {post} api/project/create Create Project
+ * @apiDescription Creating Project
+ * @apiGroup project
+ * @apiPermission public
+ *
+ * @apiParam {String} projectName The project name
+ * @apiParam {String} email Email of the owner
+ */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const projectName = req.body.projectName
   const email = req.body.email
