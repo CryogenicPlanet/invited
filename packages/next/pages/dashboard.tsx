@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import { GetServerSideProps } from 'next'
+import { getSession } from 'next-auth/client'
 import React, { useState } from 'react'
-import { Cookies } from 'react-cookie'
 import { Toaster } from 'react-hot-toast'
 
 import KeyModal from '@components/KeysModal'
@@ -9,8 +9,6 @@ import ProjectNameModal from '@components/ProjectNameModal'
 import { LockClosedIcon, PlusIcon, ViewListIcon } from '@heroicons/react/solid'
 import { Project } from '@interfaces/project'
 import { PrismaClient } from '@prisma/client'
-
-const cookies = new Cookies()
 
 export default function Dashboard({ projects }: { projects: Project[] }) {
   const [currentProject, setCurrentProject] = useState<Project | null>(null)
@@ -174,39 +172,22 @@ export default function Dashboard({ projects }: { projects: Project[] }) {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const prisma = new PrismaClient()
 
+  const session = await getSession(ctx)
+
   try {
-    const req = ctx.req
+    if (session && session.user) {
+      const email = session.user.email
 
-    let email: string | undefined
-
-    // if context has request info aka Server Side
-    if (req) {
-      // ugly way to get cookie value from a string of values
-      // good enough for demonstration
-      email = req.headers?.cookie?.replace(
-        // eslint-disable-next-line no-useless-escape
-        /(?:(?:^|.*;\s*)email\s*\=\s*([^;]*).*$)|^.*$/,
-        '$1'
-      )
-    } else {
-      // we dont have request info aka Client Side
-      email = cookies.get('email')
+      if (email) {
+        const projects = await prisma.project.findMany({
+          where: { owner: { email } },
+          include: { _count: { select: { whitelist: true } } }
+        })
+        return { props: { projects } }
+      }
     }
-
-    email = email ? decodeURI(email) : email
-
-    console.log('SSR', email)
-
-    if (email) {
-      const projects = await prisma.project.findMany({
-        where: { owner: { email } },
-        include: { _count: { select: { whitelist: true } } }
-      })
-      return { props: { projects } }
-    } else {
-      // Redirect handled inside handleAuthSSR
-      return { redirect: { destination: '/', permanent: false } }
-    }
+    // Redirect handled inside handleAuthSSR
+    return { redirect: { destination: '/', permanent: false } }
   } catch (err) {
     console.error(err)
     return { redirect: { destination: '/', permanent: false } }
