@@ -17,7 +17,7 @@ Basic Invite Handling API and Package
 
 ### Install
 ```
-yarn add invited
+yarn add invited axios
 ```
 
 ### Basic Usage

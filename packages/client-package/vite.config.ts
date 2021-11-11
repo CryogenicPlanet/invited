@@ -17,6 +17,14 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'invited',
       fileName: 'index'
+    },
+    rollupOptions: {
+      external: ['axios'],
+      output: {
+        globals: {
+          axios: 'Axios'
+        }
+      }
     }
   }
 })

@@ -1,6 +1,6 @@
 {
   "name": "invited",
-  "version": "0.0.3-a",
+  "version": "0.0.4",
   "main": "./dist/index.umd.js",
   "typings": "./dist/index.d.ts",
   "module": "./dist/index.es.js",
@@ -38,6 +38,7 @@
   },
   "files": [
     "dist",
-    "!dist/src"
+    "!dist/src",
+    "!dist/tsconfig.tsbuildinfo"
   ]
 }
