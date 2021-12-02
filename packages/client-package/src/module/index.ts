@@ -47,7 +47,7 @@ class Invited {
       if (modal) {
         this._openModal()
       }
-      throw new Error(err)
+      throw new Error(err as string)
     }
   }
 
@@ -95,7 +95,7 @@ class Invited {
       )
       return `${this.baseUrl}/${response.data.slug}`
     } catch (err) {
-      throw new Error(err)
+      throw new Error(err as string)
     }
   }
 
@@ -109,7 +109,7 @@ class Invited {
         { headers: { apiToken } }
       )
     } catch (err) {
-      throw new Error(err)
+      throw new Error(err as string)
     }
   }
 }
