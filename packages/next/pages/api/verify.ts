@@ -60,13 +60,20 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(400).send('No Email sent')
       return
     }
+    const domainRegex = /@(\w+.*)/.exec(email)
+
+    const domain = domainRegex ? domainRegex[0].slice(1) : null
 
     const valid = await prisma.project.findUnique({
       where: { apiToken },
-      include: { whitelist: { where: { email } } }
+      include: { whitelist: { where: { OR: [{ email }, { domain: domain }] } } }
     })
 
-    if (valid?.whitelist[0].email === email) {
+    if (
+      valid &&
+      (valid?.whitelist[0].email === email ||
+        valid.whitelist[0].domain === domain)
+    ) {
       res.status(200).send('Ok')
       return
     }

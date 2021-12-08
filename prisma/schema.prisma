@@ -20,7 +20,8 @@ model InviteLinks {
 
 model Whitelist {
   id        Int      @id @default(autoincrement())
-  email     String   @unique
+  email     String?  @unique
+  domain    String?  @unique
   Project   Project? @relation(fields: [projectId], references: [id])
   projectId Int?
 }

@@ -5,7 +5,8 @@
   "scripts": {
     "verify": "pnpm recursive run verify",
     "build": "pnpm recursive run build",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "dev": "cd packages/next && pnpm dev"
   },
   "author": "@CryogenicPlanet",
   "license": "ISC",
