@@ -15,7 +15,7 @@ model InviteLinks {
   project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId Int
   slug      String  @unique
-  used      Boolean @default(false)
+  remaining Int     @default(1)
 }
 
 model Whitelist {
