@@ -29,12 +29,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     include: { project: true }
   })
 
-  if (valid?.used === false) {
+  if (valid && valid.remaining >= 1) {
     const project = await prisma.project.update({
       where: { id: valid.project.id },
       data: {
         InviteLinks: {
-          updateMany: { where: { slug, used: false }, data: { used: true } }
+          updateMany: {
+            where: { slug, remaining: { gte: 1 } },
+            data: { remaining: { decrement: 1 } }
+          }
         },
         whitelist: { create: { email } }
       }
