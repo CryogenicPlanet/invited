@@ -89,7 +89,7 @@ class Invited {
 
     try {
       const response = await axios.get(
-        `${serverUrl}/api/invite/create?apiToken=${apiToken}`,
+        `${serverUrl}/api/invite/create`,
 
         { headers: { apiToken } }
       )
