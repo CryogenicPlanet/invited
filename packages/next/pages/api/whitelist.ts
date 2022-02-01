@@ -22,7 +22,7 @@ const prisma = new PrismaClient()
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const emails = req.body.emails as string[] | undefined
 
-  const apiToken = req.headers.apiToken || req.body.apiToken
+  const apiToken = req.headers['api-token'] || req.body.apiToken
   try {
     isValidToken(apiToken)
 

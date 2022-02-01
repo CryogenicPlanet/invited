@@ -14,7 +14,7 @@ const prisma = new PrismaClient()
  * @apiParam {String} redirectUrl Update a redirect url (optional)
  */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const apiToken = req.headers.apiToken || req.body.apiToken
+  const apiToken = req.headers['api-token'] || req.body.apiToken
 
   const redirectUrl = req.body.redirectUrl
 

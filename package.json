@@ -6,7 +6,8 @@
     "verify": "pnpm recursive run verify",
     "build": "pnpm recursive run build",
     "postinstall": "prisma generate",
-    "dev": "cd packages/next && pnpm dev"
+    "dev": "cd packages/next && pnpm dev",
+    "publish": "cd packages/client-package && pnpm publish"
   },
   "author": "@CryogenicPlanet",
   "license": "ISC",

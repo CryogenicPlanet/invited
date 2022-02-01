@@ -40,7 +40,7 @@ const prisma = new PrismaClient()
  */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const apiToken =
-    req.headers.apiToken || req.body.apiToken || req.query.apiToken
+    req.headers['api-token'] || req.body.apiToken || req.query.apiToken
 
   const prefix = req.body.prefix || req.query.prefix
 

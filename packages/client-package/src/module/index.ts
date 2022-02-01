@@ -40,7 +40,7 @@ class Invited {
       await axios.post(
         `${serverUrl}/api/verify`,
         { email },
-        { headers: { apiToken } }
+        { headers: { 'api-token': apiToken } }
       )
       return true
     } catch (err) {
@@ -58,7 +58,7 @@ class Invited {
         await axios.post(
           `${serverUrl}/api/project/update`,
           { redirectUrl },
-          { headers: { apiToken } }
+          { headers: { 'api-token': apiToken } }
         )
       } catch (err) {
         console.error(err)
@@ -91,7 +91,7 @@ class Invited {
       const response = await axios.get(
         `${serverUrl}/api/invite/create`,
 
-        { headers: { apiToken } }
+        { headers: { 'api-token': apiToken } }
       )
       return `${this.baseUrl}/${response.data.slug}`
     } catch (err) {
@@ -106,7 +106,7 @@ class Invited {
       await axios.post(
         `${serverUrl}/api/use`,
         { email, slug },
-        { headers: { apiToken } }
+        { headers: { 'api-token': apiToken } }
       )
     } catch (err) {
       throw new Error(err as string)

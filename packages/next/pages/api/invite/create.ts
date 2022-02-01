@@ -36,7 +36,10 @@ const prisma = new PrismaClient()
  */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const apiToken =
-    req.headers.apiToken || req.body.apiToken || req.query.apiToken
+    req.body.apiToken || req.query.apiToken || req.headers['api-token']
+
+  console.log('Headers', req.headers)
+
   try {
     isValidToken(apiToken)
 
@@ -55,6 +58,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     res.status(200).json({ slug })
   } catch (err) {
+    console.error(err)
     res.status(400).json({ err })
   }
 }

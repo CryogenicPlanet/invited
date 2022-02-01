@@ -52,7 +52,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const email = (req.body.email || req.query.email) as string | undefined
 
   const apiToken =
-    req.headers.apiToken || req.body.apiToken || req.query.apiToken
+    req.headers['api-token'] || req.body.apiToken || req.query.apiToken
   try {
     isValidToken(apiToken)
 
